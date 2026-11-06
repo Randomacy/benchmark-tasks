@@ -26,6 +26,8 @@ the end of the episode.
 
 ## Runtime and seeds
 
-- Run limit: 2,400 control steps (2 minutes at 20 Hz). The scripted demo finishes in about 10 s of
-  simulated time.
+- Run limit: 2,400 control steps (2 minutes at 20 Hz). The scripted demo runs at half speed and finishes in about
+  20 s of simulated time.
 - Fixed layout: `-E object_jitter=0`, so no seed is needed; every trial starts from the same poses.
+- The cup is an Arena library model. If it fails to load with a 404 from the staging bucket, set
+  `ARENA_NUCLEUS_DIR: str = ISAACLAB_NUCLEUS_DIR` in `isaaclab_arena/assets/nucleus.py`, so it loads from production.
