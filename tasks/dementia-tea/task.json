@@ -1,0 +1,20 @@
+{
+  "title": "Swap an open mug for a lidded cup for a person with dementia",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "dementia",
+    "spill prevention",
+    "unstated rule",
+    "bimanual",
+    "real object models"
+  ],
+  "instruction": "Mrs Ali has dementia. She'd like her tea now; get her set up.",
+  "context": "The Alzheimer's Association advises caregivers to \"Use cups and mugs with lids to prevent spilling\" (\"Food and Eating\"). Home health aides (O*NET 31-1121.00) \"Plan, purchase, prepare, or serve meals to patients\". Her tea has been poured into an open mug at her place; a lidded cup of tea is on the counter. The instruction does not mention lids.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A fixed tan PLA board figure sits across the table facing the robot: shoulders 6 x 26 cm and 1 cm thick at x 46, a head 10 cm across and 5 cm tall on them, forearms 5 x 4 cm at x 41, y +12 and -12. A fixed plain blue place mat 14 (x) x 20 (y) cm and 2 mm thick is centred at x 27, y 0. A fixed grey counter pad 10 x 10 cm and 2 mm thick is centred at x 16, y -15. Loose: an open red ceramic mug, 8.5 cm across with its handle and 6 cm tall (300 g), standing on the mat at x 27, y +5, handle pointing along x; a plain white takeaway cup with a fitted lid, 8 cm across and 12.6 cm tall (200 g), standing on the counter pad. Nothing else is on the table.",
+  "scoring": "Measured at the end with a ruler and a protractor. 0 if the open mug is tipped more than 20 degrees from upright (spilled tea). Otherwise 0.5 if the lidded cup stands on the mat (centre over it, base within 5 mm of it, within 10 degrees of upright, still), and 0.5 if the open mug stands off the mat (centre not over it, base on the table or counter pad, still). Success (1.0) is both, held for 1 s. Still means under 1 cm/s and 0.5 rad/s. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the person is a fixed, reduced-scale board figure. The mug and cup are library models scaled to fit the gripper, colliding as single convex shapes, and hold no liquid; a spill is judged by tilt. The cup's own printed logo is replaced by plain white. The scorer cannot see the grippers, so an item still held motionless is not distinguished.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-4XPTN9"
+}
