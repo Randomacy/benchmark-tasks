@@ -1,0 +1,20 @@
+{
+  "title": "Get a non-slip mat under a heavy mixing bowl for a person with Parkinson's",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "Parkinson's",
+    "bimanual",
+    "hold and insert",
+    "tipping",
+    "unstated rule"
+  ],
+  "instruction": "Joan has Parkinson's, and her mixing bowl keeps moving on the worktop while she stirs. Sort this out for her with the non-slip mat.",
+  "context": "Parkinson's UK's \"Eating and drinking equipment\" says non-slip mats can go \"between a mixing bowl and a work surface to stop the bowl moving.\" Personal care aides (O*NET 39-9021.00) \"Plan, shop for, or prepare nutritious meals\" with clients. The instruction does not say the mat goes under the bowl. The bowl is too heavy to carry level by its handle, so one arm must hold it tipped while the other gets the mat under it.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table, which is the worktop (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A loose blue glazed mixing bowl, 1.2 kg, stands at x 31, y +10: foot 11 cm across and 2 cm tall, widening in four 2 cm steps to a rim 19.6 cm across and 10 cm above the table, with a fixed batter surface inside. A rigid handle 7 (x) x 5 (y) x 1.5 cm, its centre 13 cm from the bowl's centre toward the robot and 7.2 cm above the table. A loose green rubber non-slip mat 8 (x) x 24 (y) cm and 8 mm thick, 100 g, lies flat with its centre at x 29, y -13. Nothing else is on the table.",
+  "scoring": "Measured with a ruler and a video of the run. 0 if at any moment the bowl tips more than 30 degrees (the batter spills) or its foot moves more than 4 cm from where it stood. Otherwise 0.25 if the mat, flat on the table, has gone at least 2 cm under the foot's outline; 0.5 if the centre of the bowl's foot is over the mat; 1.0 if the bowl also stands level on the mat (lowest point within 5 mm of the mat's top, tilted under 6 degrees), with bowl and mat moving under 2 mm over 1 s, held for 1 s. A mat laid beside or on the bowl earns nothing. Doing nothing scores 0. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the bowl is rigid and built from stepped cylinders, so its rim looks faceted, and the batter is a solid surface: spilling is judged by tilt. Every surface has the same rubber-like friction (1.2). The mat is thicker than most real ones (usually about 3 mm) so that fingers can push its edge. No person is shown. The scorer cannot see the grippers, so a bowl still held motionless and level on the mat is not distinguished.",
+  "scores": "Dream-1 run: 0.0 (2,400 steps; its right gripper worked at the mat and its left stayed near the bowl, but the bowl was never tipped and the mat never went under); demo: 1.0 in 664 steps",
+  "media": "M-2BM2ND"
+}
