@@ -1,0 +1,20 @@
+{
+  "title": "Clip a plate guard onto a plate for a person with Parkinson's",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "Parkinson's",
+    "bimanual",
+    "brace and press",
+    "spring clip",
+    "adaptive tableware"
+  ],
+  "instruction": "Raj has Parkinson's and keeps pushing his food off the edge of his plate. Clip the plate guard onto his plate for him.",
+  "context": "Parkinson's UK's \"Eating and drinking equipment\" says \"You can clip a plate guard onto your plate, providing an upright ring around the edge to stop food from falling off.\" The guard's sprung jaw must be forced over the rim, and that push shoves the light plate across the table unless it is steadied, so one arm must brace the plate while the other presses the guard on.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A loose white plate, 250 g, centred at x 30, y +2: a foot 16 cm across and 1.2 cm tall under a flat rim 22 cm across and 6 mm thick, so the rim's underside is 1.2 cm and its top 1.8 cm above the table. A loose blue plastic plate guard, 35 g, stands on the table on the robot's right of the plate: a curved strip spanning 70 degrees of a circle, its back wall 5 cm tall and 4 mm thick with an inner radius of 11.2 cm, the middle of the wall at x 30, y -22 and the circle's centre at x 30, y -10.6, so its concave side faces the plate. Along the wall's inner face are two jaws reaching 1.4 cm in: a lower jaw, a solid block 1.1 cm tall standing on the table, and an upper jaw 4 mm thick whose underside rests 1.5 cm above the table, 3 mm lower than the rim's top. The upper jaw slides straight up by up to 1 cm against a 400 N/m spring, and the front edge of its underside has a 45-degree bevel 4 mm high. Nothing else is on the table.",
+  "scoring": "Measured at the middle of the guard's arc. Depth is how far the rim's edge lies past the jaws' tips, counted only when the guard stands within 12 degrees of upright, its middle is within 1.5 cm of the plate's centre line, and the rim lies between the jaws. 0 if the plate is tipped more than 20 degrees, is not on the table (lowest point more than 2 cm above it), or has at any moment been shoved 1.2 cm or more from where it stood. Otherwise 0.5 at 4 mm of depth, 0.75 at 9 mm, and 1.0 at 9 mm with the plate flat (under 6 degrees) and on the table (within 5 mm), the plate and guard each moved under 2 mm over 1 s, and no part of either gripper within 10 cm of the plate or the guard, held for 1 s. Doing nothing scores 0.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the plate and guard are rigid, built from simple shapes, and the plate is drawn with 12 flat sides. A real guard's springy lip is modelled as a rigid upper jaw on a vertical spring slide with a bevelled lead-in. There is no food; a shove of 1.2 cm stands for spilled food. Each object has one friction model. The release check uses the gripper links' positions from the simulator; on a real table, check the grippers are open and clear.",
+  "scores": "Dream-1 run: 0.0 (2,400 steps; its right gripper picked up the guard and held it against the plate's edge, but the left arm never steadied the plate and the clip never went on); demo: 1.0 in 491 steps",
+  "media": "M-UV8UZX"
+}
