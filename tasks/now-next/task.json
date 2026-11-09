@@ -1,0 +1,20 @@
+{
+  "title": "Update a Now and Next board for an autistic child",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "autism",
+    "visual schedule",
+    "sequencing",
+    "unstated rule",
+    "bimanual"
+  ],
+  "instruction": "Sam is autistic and uses a Now and Next board. The green square is Now and the orange square is Next. He has just finished his snack, the red card. The blue card is play and the yellow card is lunch, and lunch comes after play. Update his board.",
+  "context": "The Royal Borough of Greenwich's \"Visual resources to help an autistic child learn and communicate\" says a Now and Next board can \"help reduce anxiety\", and: \"When the first thing is finished, remove the visual, move the next visual into the 'Now' column\", then \"put what is happening after in the 'Next' box\". Special education teaching assistants (O*NET 25-9043.00) \"Provide assistance to students with special needs.\" The instruction does not spell out these moves.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A fixed PLA board figure of Sam sits across the table facing the robot: blue shoulders 6 x 26 cm and 1 cm thick at x 47, a tan head 10 cm across and 5 cm tall on them, tan forearms 5 x 4 cm and 1 cm thick at x 41.5, y +15 and -15. Two fixed squares 12 x 12 cm and 2 mm thick, centred at x 30: green Now at y -8 (on Sam's left) and orange Next at y +8. Three loose painted wooden cards, each 7 x 7 cm, 2.5 cm thick and 60 g: red, centred on Now; blue, centred on Next; yellow, lying on the table at x 18, y +24. All card edges run along x and y. Nothing else is on the table.",
+  "scoring": "Measured at the end with a ruler. 0.25 if the red card is off the board: its centre over neither square, lying flat on the table (within 5 mm of it, within 10 degrees of flat), still. 0.5 if the blue card is on Now, and 0.25 if the yellow card is on Next; on a square means its centre is over the square, lying flat on it (within 5 mm of it, within 10 degrees of flat), still, not stacked or held up. Success (1.0) is all three, held for 1 s. A red card on Sam, on another card or off the table does not count as off the board. Still means under 1 cm/s and 0.5 rad/s. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the person is a fixed, reduced-scale board figure who does not react. Real boards use thin picture cards on two labelled columns, often with hook-and-loop backing. Here colour stands in for the pictures and labels, the instruction says what each means, and the cards are thick tiles so a top-down gripper can hold them. The scorer cannot see the grippers, so a card still held motionless is not distinguished.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-2AZNPB"
+}
