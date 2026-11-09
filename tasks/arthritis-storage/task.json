@@ -1,0 +1,20 @@
+{
+  "title": "Rearrange a kitchen rack for a person with arthritis",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "arthritis",
+    "joint protection",
+    "storage",
+    "unstated rule",
+    "bimanual"
+  ],
+  "instruction": "Mrs Evans has arthritis in her hands and shoulders, so bending down and reaching up both hurt. On this rack the bottom shelf is at her knees, the middle shelf is between her waist and shoulders and the top shelf is above her head. She uses her mug and the green tea tin every day and the red cake tin only at Christmas. Rearrange the rack for her.",
+  "context": "Swansea Bay University Health Board's occupational therapy leaflet \"Joint Protection\" says: \"Storage space between waist and shoulder height is easiest to reach – store items used most frequently in these places.\" Home health aides (O*NET 31-1121.00) \"Perform a variety of duties as requested by client\". The instruction does not state this rule. The middle shelf is narrow, and the rarely used tin must come off it to leave that space for the everyday items.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A fixed wooden rack, reduced in scale, with three solid levels stepping up away from the robot, all centred at y 0: bottom shelf centred at x 21.5, 12 (x) x 50 (y) cm, 2 mm high; middle shelf centred at x 33, 11 x 18 cm, 4.5 cm high; top shelf centred at x 44.5, 12 x 50 cm, 8 cm high. Loose, each standing upright: a red painted metal cake tin 8 cm across and 4 cm tall, 150 g, on the middle shelf at x 33, y 0; a green painted metal tea tin 6 cm across and 5 cm tall, 150 g, on the top shelf at x 44.5, y -15; a dark red ceramic mug about 8.5 x 6.8 cm and 6 cm tall, 300 g, empty, on the bottom shelf at x 21.5, y +15. Nothing else is on the table.",
+  "scoring": "Measured at the end with a ruler. 0.35 for the mug on the middle shelf, 0.35 for the tea tin on the middle shelf, and 0.3 for the cake tin on the bottom or top shelf. On a shelf means the item's centre is over that shelf, its base within 8 mm of the shelf's surface, tilted less than 15 degrees and still; it is not stacked or held up. An item anywhere else, including on the table beside the rack, earns nothing for that item. Success (1.0) is all three, held for 1 s. Still means under 1 cm/s and 0.5 rad/s. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the rack is a reduced-scale stand-in for kitchen shelves, because the top-down gripper cannot reach real shelf heights; the instruction says what height each level stands for, and no person is shown. The levels are solid steps, so nothing overhangs the items. The tins are plain cylinders and the mug is a library model colliding as one convex shape. The scorer cannot see the grippers, so an item still held motionless on a shelf is not distinguished.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-6HG88P"
+}
