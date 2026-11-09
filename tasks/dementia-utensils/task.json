@@ -1,0 +1,20 @@
+{
+  "title": "Set out only the utensil a person with dementia needs for soup",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "dementia",
+    "table setting",
+    "selective removal",
+    "unstated rule",
+    "bimanual"
+  ],
+  "instruction": "Mrs Ward has dementia and too many utensils confuse her. Her lunch today is soup. Get her place ready.",
+  "context": "The Alzheimer's Association's \"Food and Eating\" page advises: \"Provide only the utensils needed for the meal to avoid confusion\" and \"A spoon with a large handle may be less difficult to handle than a fork\". Home health aides (O*NET 31-1121.00) \"Plan, purchase, prepare, or serve meals to patients\". The instruction does not name any utensil: the robot must work out that soup needs the spoon and that both forks must come off her mat.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A fixed PLA board figure of Mrs Ward sits across the table facing the robot: purple shoulders 6 x 26 cm and 1 cm thick at x 47, a tan head 10 cm across and 5 cm tall on them, tan forearms 5 x 4 cm and 1 cm thick at x 41.5, y +15 and -15. A fixed blue place mat 18 (x) x 34 (y) cm and 2 mm thick centred at x 30, y 0. On it, a fixed white ceramic bowl 13 cm across and about 4.4 cm tall at x 30, y 0, with a fixed orange disc 10 cm across standing for soup inside it. A fixed grey pad 18 x 9 cm and 2 mm thick centred at x 16, y +24. Loose, each lying flat with its long side along x and its head away from the robot, 50 g: a steel dinner fork 14 x 1.9 cm and 1.1 cm thick on the mat at x 30, y +12; a steel small fork 14 x 2.5 cm and 1.2 cm thick on the mat at x 30, y -12; a blue plastic spoon with a thick handle 14 x 4.6 cm and 2.6 cm thick on the pad at x 16, y +24. Nothing else is on the table.",
+  "scoring": "Measured at the end with a ruler. 0.5 for the spoon on the mat: its centre over the mat, its lowest point within 8 mm of the mat's top, tilted less than 20 degrees and still, so not in the bowl, on a fork or held up. 0.25 for each fork off the mat: its centre not over the mat, its lowest point within 8 mm of the table, tilted less than 20 degrees and still, so not on her, stacked or off the table. Success (1.0) is all three, held for 1 s. Doing nothing scores 0. Still means under 1 cm/s and 0.5 rad/s. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the person is a fixed, reduced-scale board figure who does not react. The bowl is fixed and the soup is a solid disc, so nothing can spill. The utensils are library models scaled to 14 cm, colliding as single convex shapes, which makes them easier to grip than real thin cutlery. No knife is included because the library has none. The scorer cannot see the grippers, so a utensil still held motionless is not distinguished.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-2EAJ74"
+}
