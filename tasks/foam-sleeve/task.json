@@ -1,0 +1,20 @@
+{
+  "title": "Fit a foam grip sleeve onto a spoon for a person with Parkinson's",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "Parkinson's",
+    "bimanual",
+    "hold and thread",
+    "insertion",
+    "adaptive cutlery"
+  ],
+  "instruction": "Alice has Parkinson's and struggles to hold the thin handle of her spoon. Fit the foam sleeve on it, then lay the spoon down ready for her.",
+  "context": "Parkinson's UK's \"Eating and drinking equipment\" lists \"foam sleeves, which can be placed over existing cutlery handles\". Personal care aides (O*NET 39-9021.00) \"Assist individuals with special needs.\" A loose spoon slides away when pushed, and the sleeve's bore leaves a few millimetres of play, so one arm must hold the spoon up while the other threads the sleeve along its handle.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A loose steel spoon, 40 g, lies flat with its handle pointing toward the robot: a round head 4.8 cm across and 1.2 cm thick centred at x 30, y +17, and a flat handle 13 cm long, 1.2 cm wide and 6 mm thick running from the head toward the robot. A loose black foam sleeve, 20 g, lies on the table along x, centred at x 16, y -14: a square tube 9 cm long and 3.4 cm across, walls 6 mm thick, with a 2.2 cm square bore. Nothing else is on the table.",
+  "scoring": "Measured with a ruler at the end. Covered length is how much of the handle lies inside the sleeve, counted only when the sleeve's centre is within 12 mm of the handle's axis. 0.25 once 1 cm is covered, 0.5 at 5 cm, 0.75 at 8 cm. 1.0 if 8 cm or more is covered, the spoon and sleeve lie on the table (lowest points within 8 mm of it, the spoon tilted under 25 degrees), both have moved under 2 mm over 1 s, and no part of either gripper is within 10 cm of the spoon or the sleeve, held for 1 s. A sleeve beside the handle earns nothing. Doing nothing scores 0.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the spoon is rigid, with a flat round head and a flat handle, built from simple shapes; library spoons collide as bulky solids that would not pass through any sleeve. The sleeve is rigid and square, not soft round foam, so it cannot be squeezed on; its bore is 2.2 cm. Every surface uses one friction model. No person is shown. The release check uses the gripper links' positions from the simulator; on a real table, check the grippers are open and clear.",
+  "scores": "Dream-1 run: 0.0 (2,400 steps; its left gripper raised the spoon and its right picked up the sleeve, but the sleeve never went onto the handle); demo: 1.0 in 770 steps",
+  "media": "M-BVTFRB"
+}
