@@ -16,5 +16,5 @@
   "run_limit": "2,400 steps (2 minutes at 20 Hz)",
   "fidelity": "Approximate: the person is a fixed, reduced-scale board figure who does not react. The plate, mug and bottle are library models colliding as single convex shapes; the bottle is oversized and holds no tablets, and the shakers are plain cylinders. The box stands in for a closed cupboard, and no food is on the plate. The instruction names the items because their labels can't be read. The scorer cannot see the grippers, so an item still held motionless inside the box is not distinguished.",
   "scores": "Dream-1 run: 0.33; demo: 1.0",
-  "media": "M-RSNUE4"
+  "media": "M-NPEA7S"
 }
