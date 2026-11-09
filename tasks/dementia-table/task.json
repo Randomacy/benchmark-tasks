@@ -1,0 +1,20 @@
+{
+  "title": "Make a kitchen table safe for a person with dementia",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "dementia",
+    "home safety",
+    "selective clearing",
+    "unstated rule",
+    "bimanual"
+  ],
+  "instruction": "Mr Hart has dementia and is about to sit down to lunch at his kitchen table. He can mistake things for food. The white bottle is vitamins and the white and black shakers are salt and pepper. Make the table safe for him, and put anything you take off it in the grey box.",
+  "context": "The Alzheimer's Association's \"Alzheimer's and Dementia Home Safety Tips\" says: \"Remove vitamins, prescription drugs, sugar substitutes and seasonings from the kitchen table and counters.\" Home health aides (O*NET 31-1121.00) \"Plan, purchase, prepare, or serve meals to patients\". The instruction does not say which items to remove, and his plate and mug must stay where they are laid so he can still eat.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A fixed PLA board figure of Mr Hart sits across the table facing the robot: green shoulders 6 x 26 cm and 1 cm thick at x 47, a tan head 10 cm across and 5 cm tall on them, tan forearms 5 x 4 cm and 1 cm thick at x 41.5, y +15 and -15. A fixed grey PLA box with no lid or floor of its own, sitting on the table, centred at x 13, y 0: inside 12 (x) x 34 (y) cm, walls 1 cm thick and 3.5 cm tall. Loose on the table, each standing upright: a ceramic plate 16 cm across, 200 g, at x 30, y 0; a dark red ceramic mug about 8.5 x 6.8 cm and 6 cm tall, 300 g, empty, at x 32, y +13; a white plastic vitamin bottle 5 cm across and 8.9 cm tall, 100 g, at x 30, y +25; a white painted wooden salt shaker 4.4 cm across and 8 cm tall, 100 g, at x 34, y -17; a black painted wooden pepper shaker of the same size and mass at x 24, y -25. Nothing else is on the table.",
+  "scoring": "Measured at the end with a ruler. One third for each of the bottle, the salt shaker and the pepper shaker that is in the box: its centre inside the box's walls, its lowest point below the 3.5 cm rim, still; it may stand or lie on its side. The score is 0 if the plate or the mug has been disturbed: its centre more than 3 cm from where it started, tilted more than 10 degrees, or its base more than 5 mm off the table. Success (1.0) is all three in the box with the plate and mug undisturbed, held for 1 s. An item anywhere else, on the plate or off the table, earns nothing. Still means under 1 cm/s and 0.5 rad/s. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the person is a fixed, reduced-scale board figure who does not react. The plate, mug and bottle are library models colliding as single convex shapes; the shakers are plain cylinders and the bottle holds no tablets. The box stands in for a closed cupboard, and no food is on the plate. The instruction names the items because their labels can't be read. The scorer cannot see the grippers, so an item still held motionless inside the box is not distinguished.",
+  "scores": "Dream-1 run: 0.33; demo: 1.0",
+  "media": "M-RSNUE4"
+}
