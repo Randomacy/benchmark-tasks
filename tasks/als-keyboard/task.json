@@ -1,0 +1,20 @@
+{
+  "title": "Set up a keyboard for a person with ALS",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "ALS",
+    "communication",
+    "orientation",
+    "unstated rule",
+    "real object model"
+  ],
+  "instruction": "Tom has ALS and can no longer speak, but he can still move his right hand a little. Set up his keyboard on his tray so he can type.",
+  "context": "The Les Turner ALS Foundation's \"ALS & Communication\" lists keyboard aids for people with ALS, and its \"ALS & Activities of Daily Living\" advises \"Keep necessary items close to you to limit the amount of moving you have to do.\" Neither says which way a keyboard should face; that it must face him is common sense. The instruction does not say to turn it, or to put it by his working hand.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. A fixed PLA board figure of Tom sits across the table facing the robot, so his right side is at +y: green shoulders 6 x 26 cm and 1 cm thick at x 47, a tan head 10 cm across and 5 cm tall on them, tan forearms 4 x 4 cm and 1 cm thick at x 42, y +12 and -12. A fixed plain grey tray 16 (x) x 26 (y) cm and 2 mm thick is centred at x 30, y +9. Loose: a black full-size plastic keyboard with a number pad, 26 x 7.9 cm and 2.1 cm tall (200 g), lying flat with its keys up on the table, centred at x 22, y +27, its long side along x, its number pad at the far (+x) end and its space-bar edge toward -y. Nothing else is on the table.",
+  "scoring": "Measured at the end with a ruler and a protractor. 0 unless the keyboard rests on the tray (centre over it, keys up and within 10 degrees of flat, within 5 mm of lying on it, still); that scores 0.25. Add 0.5 if it faces Tom: its space-bar edge is toward him, meaning it has turned 90 degrees anticlockwise seen from above from its starting direction, within 15 degrees. Add 0.25 if its centre is within 14 cm of his right hand, the near end of his right forearm at x 40, y +12. Success (1.0) is all three, held for 1 s. Unturned or backwards it can reach only 0.5. Still means under 1 cm/s and 0.5 rad/s. On a real table, open the grippers before measuring.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the person is a fixed, reduced-scale board figure who does not type, so usability is judged from the keyboard's pose. The keyboard is a library model scaled to 26 cm so the gripper can span and carry it, colliding as a single convex shape, with no working keys. The demo's wrist nears its limit, leaving the keyboard about 5 degrees off square. The scorer cannot see the grippers, so a keyboard still held motionless is not distinguished.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-BWG5ZD"
+}
