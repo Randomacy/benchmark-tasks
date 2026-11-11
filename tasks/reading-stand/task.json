@@ -1,0 +1,20 @@
+{
+  "title": "Set up a folding reading stand at its steepest setting for a person with severe arthritis",
+  "category": "Societal relevance",
+  "keywords": [
+    "assistive",
+    "arthritis",
+    "articulated",
+    "ratchet",
+    "hinged stay",
+    "reading aid"
+  ],
+  "instruction": "Ann has severe arthritis and can't hold a book or look down to read. Set her reading stand up at its steepest setting.",
+  "context": "Remap describes a book rest made for a client who \"cannot hold a book or look down to read due to severe arthritis\". Living Made Easy lists folding, adjustable-angle bookrests whose \"angle adjusts by positioning rear support\". The stand's stay rides a ratchet: lifted part way and let go, the board drops into a lower notch, so the board must be raised past the top notch before it is lowered onto the stay.",
+  "setup": "Positions in cm from the midpoint between the two arm bases, on the table (x forward, y to the robot's left); the arm bases are at y +30.5 and -30.5. Ann sits on the far side of the table. A loose folding reading stand lies folded flat, its base centred at x 30, y -2: a grey base 31 cm deep (x) and 32 cm wide, 1 cm thick, 0.8 kg; a wooden board 25 cm deep, 30 cm wide and 8 mm thick, 450 g, lying flat on two pads 1.5 cm high, hinged along its far edge (x 42) with a 1.5 cm book ledge along that edge and a red pull tab (1.5 x 2.5 x 3 cm) at the middle of its near edge (x 18); a 14 cm stay, 60 g, hinged under the board 10 cm from the hinge and folded flat beneath it, with a 20 cm wide foot. Across the base runs a ratchet of three ridges 6 mm high; the gaps between them are notches that hold the board at about 30, 45 and 60 degrees (measured 44 and 58 degrees for the middle and top notches). Nothing else is on the table.",
+  "scoring": "Measured at the end with a protractor and by looking at the stay. The board counts as set when the stay's foot sits in a notch and the board is within 5 degrees of that notch's angle. 0 if the board is flat, held up only by a gripper, or the stand has tipped more than 10 degrees. 0.25 if set in the 30 or 45 degree notch. 0.75 if set in the top (60 degree) notch. 1.0 if set in the top notch, the board has moved under 0.5 degrees over 1 s, and no part of either gripper is within 5 cm of the stand. Doing nothing scores 0.",
+  "run_limit": "2,400 steps (2 minutes at 20 Hz)",
+  "fidelity": "Approximate: the stand is built from rigid boxes. The board and stay turn on frictionless hinges with light damping, and the ratchet is three plain ridges rather than shaped teeth. Each part has one friction model. There is no book on the stand and no person is shown. The release check uses the gripper links' positions from the simulator; on a real table, check the grippers are open and clear.",
+  "scores": "Dream-1 run: 0.0 (2,400 steps; its right arm reached out over the folded stand but never lifted the board, which stayed flat); demo: 1.0 in 404 steps",
+  "media": "M-GURRWA"
+}
