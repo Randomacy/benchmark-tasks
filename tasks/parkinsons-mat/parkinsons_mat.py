@@ -14,7 +14,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import numpy as np  # noqa: E402
-from shapekit import Compound  # noqa: E402
+from shapekit import Compound, gripper_points  # noqa: E402
 from yam_arena.constants import FINGER_CLOSED, FINGER_OPEN  # noqa: E402
 from yam_arena.demo import Waypoint  # noqa: E402
 from yam_arena.task_file import TABLE_TOP, Box  # noqa: E402
@@ -48,12 +48,13 @@ MAT = Box("mat", pos=(MAT_X, MAT_START_Y, TOP + MAT_H / 2), size=MAT_SIZE, color
 OBJECTS = [BOWL, MAT]
 
 SPILL_DEG = 30.0  # a bowl of batter tipped past this has spilled
-MOVED_M = 0.04  # the bowl's foot further than this from where it stood has been dragged or carried off
+UNDER_M = 0.02  # partial credit: the mat reaches at least this far inside the foot's outline
+HANDS_CLEAR_M = 0.05
 FLAT_DEG = 6.0
 ON_MAT_M = 0.005
 STILL_M = 0.002
 STILL_CALLS = 60  # scoring calls without moving (at most three a step, so at least 1 s)
-_state = {"failed": False, "offset": None}
+_state = {"spilled": False, "offset": None}
 _anchors = {}
 
 
@@ -74,34 +75,72 @@ def _still(name, item):
     return anchor[1] >= STILL_CALLS
 
 
+def _rot(q):
+    x, y, z, w = q
+    return np.array([
+        [1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)],
+        [2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],
+        [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)],
+    ])
+
+
 def _foot_xy(bowl):
-    """Where the bowl's foot is: the reported centre is the bounding box's, which the handle pulls toward the robot."""
+    """Where the centre of the bowl's foot is. The reported centre is the bounding box's, which the handle pulls toward
+    the robot, so keep the offset seen at the start in the bowl's own frame: it then follows the bowl when it is moved
+    or turned."""
+    R = _rot(bowl.quat_xyzw)
     if _state["offset"] is None:
-        _state["offset"] = np.array(BOWL_XY) - np.array(bowl.pos[:2], dtype=float)
-    return np.array(bowl.pos[:2], dtype=float) + _state["offset"]
+        _state["offset"] = R.T @ (np.array([*BOWL_XY, TOP + FOOT_H / 2]) - np.array(bowl.pos, dtype=float))
+    return (np.array(bowl.pos, dtype=float) + R @ _state["offset"])[:2]
 
 
 def _note(objects):
-    bowl = objects["bowl"]
-    if _tilt_deg(bowl) > SPILL_DEG or np.linalg.norm(_foot_xy(bowl) - np.array(BOWL_XY)) > MOVED_M:
-        _state["failed"] = True
+    if _tilt_deg(objects["bowl"]) > SPILL_DEG:
+        _state["spilled"] = True
 
 
 def _mat_on_table(mat):
     return bool(abs(float(mat.low[2]) - TOP) < ON_MAT_M and _tilt_deg(mat) < 10.0)
 
 
+def _in_mat(objects, xy):
+    """A point on the table in the mat's own frame (x across the mat, y along it): the mat may have been turned."""
+    mat = objects["mat"]
+    R = _rot(mat.quat_xyzw)
+    d = np.array([xy[0], xy[1], 0.0]) - np.array([mat.pos[0], mat.pos[1], 0.0], dtype=float)
+    return (R.T @ d)[:2]
+
+
+def _mat_under_depth(objects):
+    """How far the mat reaches inside the foot's outline (m): the foot's radius less the distance from the foot's centre
+    to the nearest point of the mat. Negative when the mat is clear of the foot, beside it or beyond it."""
+    p = _in_mat(objects, _foot_xy(objects["bowl"]))
+    half = np.array(MAT_SIZE[:2]) / 2
+    nearest = np.clip(p, -half, half)
+    return float(FOOT_R - np.linalg.norm(p - nearest))
+
+
 def _mat_partly_under(objects):
-    """The mat's end has gone under the foot's outline by at least 2 cm, and it lies flat on the table."""
-    mat, foot = objects["mat"], _foot_xy(objects["bowl"])
-    return bool(_mat_on_table(mat) and float(mat.high[1]) > foot[1] - FOOT_R + 0.02
-                and abs(float(mat.pos[0]) - foot[0]) < MAT_SIZE[0] / 2 + FOOT_R)
+    """The mat, flat on the table, overlaps the foot's outline by at least 2 cm."""
+    return bool(_mat_on_table(objects["mat"]) and _mat_under_depth(objects) >= UNDER_M)
 
 
 def _bowl_centre_over_mat(objects):
-    mat, foot = objects["mat"], _foot_xy(objects["bowl"])
-    inside = abs(foot[0] - float(mat.pos[0])) < MAT_SIZE[0] / 2 and abs(foot[1] - float(mat.pos[1])) < MAT_SIZE[1] / 2
-    return bool(_mat_on_table(mat) and inside)
+    p = _in_mat(objects, _foot_xy(objects["bowl"]))
+    inside = abs(p[0]) < MAT_SIZE[0] / 2 and abs(p[1]) < MAT_SIZE[1] / 2
+    return bool(_mat_on_table(objects["mat"]) and inside)
+
+
+def _hands_clear(objects):
+    """No finger link within 5 cm of the bowl's or the mat's outline."""
+    points = gripper_points()
+    if points is None:
+        return True
+    for name in ("bowl", "mat"):
+        low, high = np.array(objects[name].low, dtype=float), np.array(objects[name].high, dtype=float)
+        if min(np.linalg.norm(p - np.clip(p, low, high)) for p in points) < HANDS_CLEAR_M:
+            return False
+    return True
 
 
 def _bowl_seated(objects):
@@ -113,8 +152,8 @@ def _bowl_seated(objects):
 
 def success(objects):
     _note(objects)
-    return bool(not _state["failed"] and _bowl_centre_over_mat(objects) and _bowl_seated(objects)
-                and _still("mat", objects["mat"]))
+    return bool(not _state["spilled"] and _bowl_centre_over_mat(objects) and _bowl_seated(objects)
+                and _still("mat", objects["mat"]) and _hands_clear(objects))
 
 
 def distance(objects):
@@ -122,10 +161,11 @@ def distance(objects):
 
 
 def score(objects):
-    """0 if the bowl was ever tipped past 30 degrees or moved more than 4 cm. Otherwise 0.25 if the mat has gone at least
-    2 cm under the foot, 0.5 if the bowl's centre is over the mat, 1.0 if it also stands level on the mat, still."""
+    """0 if the bowl was ever tipped past 30 degrees (the batter spills). Otherwise 0.25 if the mat overlaps the foot's
+    outline by at least 2 cm, 0.5 if the foot's centre is over the mat, 1.0 if the bowl also stands level and still on the
+    mat with both grippers 5 cm clear. Moving the bowl is allowed: lifting it aside and setting it on the mat counts."""
     _note(objects)
-    if _state["failed"]:
+    if _state["spilled"]:
         return 0.0
     if success(objects):
         return 1.0
